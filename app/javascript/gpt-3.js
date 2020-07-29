@@ -15,6 +15,7 @@ $(document).ready(function () {
 
     $('#continue-writing').attr('disabled', 'disabled');
     $('#progress-bar').show();
+    $('.helper-text').hide();
 
     $.post("/api/autocomplete", {
       prompt: truncated_prompt
