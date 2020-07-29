@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $(".dropdown-trigger").dropdown({
     coverTrigger: false,
-    hover: true
+    hover: true,
+    closeOnClick: false
   });
 });
