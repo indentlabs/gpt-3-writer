@@ -2,9 +2,10 @@ $(document).ready(function () {
   $('#suggestions').hide();
   $('#progress-bar').hide();
 
-  $('#continue-writing').click(function () {
+  $('#continue-writing, .regenerate-suggestions').click(function () {
     // Get the most-recent 1000 words
     var words_to_include = 1000;
+    var story_title      = $('#title').text().trim();
     var full_prompt      = $('#editor').first().html()
                             .split("</p><p>").join("\n\n")
                             .split("<p>").join("")
@@ -18,7 +19,7 @@ $(document).ready(function () {
     $('.helper-text').hide();
 
     $.post("/api/autocomplete", {
-      prompt: truncated_prompt
+      prompt: '"' + story_title + '"' + "\nby an anonymous author\n\n" + truncated_prompt
     }).done(function(suggestions) {
       $('.suggestions').show();
       $('#progress-bar').hide();
@@ -28,11 +29,12 @@ $(document).ready(function () {
 
       var suggestion_containers = $('.suggestion');
       suggestions.forEach(function (suggestion, index) {
-        var reformatted_suggestion = suggestion.trim()
+        var reformatted_suggestion = suggestion//.trim()
           .split("\n\n").join("</p><p>")
-          .split("\n").join("<br />")
+          .split("\n").join("</p></p>")
           .split("”“").join("\"<br />\"");
         $(suggestion_containers[index]).html("<p>" + reformatted_suggestion + "</p>");
+
       });
 
       $([document.documentElement, document.body]).animate({
@@ -42,13 +44,28 @@ $(document).ready(function () {
       $('#continue-writing').removeAttr('disabled');
       $('#continue-writing').hide();
     });
+
+    return false;
   });
 
   $('.use-suggestion').click(function () {
-    // Add this suggestion to the editor, wrapped in a <p> tag
-    var suggestion = $(this).closest('.suggestion-card').find('.suggestion').html().trim()
-    
-    $('#editor').append(suggestion);
+    // Instead of just directly concatenating the suggestion HTML onto $('#editor'), we
+    // want to instead take a two-step approach to ensure we can continue on mid-sentence:
+
+    // 1. Append the first <p> text in the suggestion to the last <p> in the editor
+    var leading_text = $(this).closest('.suggestion-card')
+                              .find('.suggestion')
+                              .find('p')
+                              .first()
+                              .html();
+    var final_p = $('#editor').find('p:last');
+    final_p.html(final_p.html() + leading_text);
+
+    // 2. Append the rest of the suggestion with new <p> tags in the editor
+    var following_ps = $(this).closest('.suggestion-card')
+                                .find('.suggestion')
+                                .find('p:not(:first)');
+    $('#editor').append(following_ps);
 
     // Clear out existing suggestions
     $('.suggestion').text('');
