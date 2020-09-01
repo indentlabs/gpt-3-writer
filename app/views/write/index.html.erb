@@ -9,11 +9,12 @@
   <div class="helper-text grey-text">
     When you're satisfied with a name, you can start writing below!
   </div>
-  <div contentEditable="true" id="editor" class="card-panel">
-    <p>
-      Once upon a time there was a dragon named Dave that wanted to make friends.
-    </p>
-  </div>
+  <%= 
+    react_component("AffluentTextInput", { 
+      id: "editor", 
+      defaultText: "Once upon a time there was a dragon named Dave that wanted to make friends, but"
+    })
+  %>
 </div>
 
 <div class="suggestions container-fluid">

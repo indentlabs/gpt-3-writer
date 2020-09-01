@@ -80,11 +80,21 @@
               <div class="row">
                 <div class="col s12">
                   <ul>
-                    <li><strong class="flow-text">4,922</strong> words</li>
-                    <li><strong class="flow-text">3</strong> pages</li>
-                    <li><strong class="flow-text">319</strong> paragraphs</li>
-                    <li><strong class="flow-text">3,292</strong> sentences</li>
-                    <li><strong class="flow-text">32,129</strong> letters</li>
+                    <li>
+                      <%= react_component("NumericMetricResult", { value: 4922, text: "words", code_ref: "word_count" }) %>
+                    </li>
+                    <li>
+                      <%= react_component("NumericMetricResult", { value: 13, text: "pages", code_ref: "page_count" }) %>
+                    </li>
+                    <li>
+                      <%= react_component("NumericMetricResult", { value: 319, text: "paragraphs", code_ref: "paragraph_count" }) %>
+                    </li>
+                    <li>
+                      <%= react_component("NumericMetricResult", { value: 3292, text: "sentences", code_ref: "sentence_count" }) %>
+                    </li>
+                    <li>
+                      <%= react_component("NumericMetricResult", { value: 32129, text: "letters", code_ref: "letter_count" }) %>
+                    </li>
                   </ul>
                 </div>
               </div>
