@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<!-- 
+  this is technically an "editor" layout that we should probably split out later, but 
+  since it's the only page on the site right now it feels fine as "application"
+-->
 <html>
   <head>
     <title>Gpt3Writer</title>
@@ -33,25 +37,171 @@
             Asimov
           </a>
           <ul class="right hide-on-med-and-down">
-          <!--
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-          -->
             <li>
-              <a class="dropdown-trigger" href="#!" data-target="settings-dropdown">
-                Settings
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
-            </li>
-            <li>
-              <a href="#!">
-                Save
-              </a>
+              <a href="#" data-target="slide-out" class="sidenav-trigger show-on-medium-and-up"><i class="material-icons">leaderboard</i></a>
             </li>
           </ul>
         </div>
       </nav>
     </div>
+    <style type="text/css">
+      /*
+      NOTE: After adding sidenav-fixed, it'll be necessary to pad the content to make 
+      sure it's properly pushed over when open.
+
+      header, main, footer, .container {
+        padding-right: 300px;
+      }
+
+      @media only screen and (max-width : 992px) {
+        header, main, footer {
+          padding-right: 0;
+        }
+      }
+      */
+    </style>
+    <ul id="slide-out" class="sidenav document-analytics-sidenav sidenav-fixed-todo">
+    <!-- we want to add sidenav-fixed and manually toggle open/close so it just pushes content over -->
+      <li>
+        <a href="#!/read-only-link" class="truncate">
+          <i class="material-icons left">leaderboard</i>
+          Document name that will probably wrap
+        </a>
+      </li>
+      <li><div class="divider"></div></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">
+              Length
+              <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+            </a>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="col s12">
+                  <ul>
+                    <li><strong class="flow-text">4,922</strong> words</li>
+                    <li><strong class="flow-text">3</strong> pages</li>
+                    <li><strong class="flow-text">319</strong> paragraphs</li>
+                    <li><strong class="flow-text">3,292</strong> sentences</li>
+                    <li><strong class="flow-text">32,129</strong> letters</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">
+              Readability
+              <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>
+                  <ul class="collapsible collapsible-accordion">
+                    <li>
+                      <a class="collapsible-header">
+                        Time to Read
+                        <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+                      </a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li>4,922 words</li>
+                          <li>3 pages</li>
+                          <li>319 paragraphs</li>
+                          <li>3,292 sentences</li>
+                          <li>32,129 letters</li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>93% Ease of Reading<br />explanation</li>
+                <li>Word Variety</li>
+                <li>Word Complexity</li>
+                <li>N-syllable words chart</li>
+                <li>
+                  <ul class="collapsible collapsible-accordion">
+                    <li>
+                      <a class="collapsible-header">
+                        Parts of Speech
+                        <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+                      </a>
+                      <div class="collapsible-body">
+                        <ul>
+                          <li>4,922 words</li>
+                          <li>3 pages</li>
+                          <li>319 paragraphs</li>
+                          <li>3,292 sentences</li>
+                          <li>32,129 letters</li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li>Lexical richness (% unique words baseline comparison)</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">
+              Entities
+              <i class="material-icons">group</i><!-- or code | settings_ethernet | search | layers | science -->
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>93% Ease of Reading<br />explanation</li>
+                <li>Word Variety</li>
+                <li>Word Complexity</li>
+                <li>N-syllable words chart</li>
+                <li>Lexical richness (% unique words baseline comparison)</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">
+              Sentiment
+              <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li class="blue white-text">93% Overall Sad</li>
+                <li>Evoked emotions</li>
+                <li>Character emotions</li>
+                <li>Emotional words</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">
+              Style
+              <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+            </a>
+            <div class="collapsible-body">
+              <ul>
+                <li>Words per sentence<br />plus graph</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
 
     <%= yield %>
   </body>
