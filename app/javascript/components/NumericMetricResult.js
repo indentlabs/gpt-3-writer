@@ -22,9 +22,11 @@ class NumericMetricResult extends React.Component {
     return this.props.computer(text);
   }
 
-  handleDispatch(data) {
-    // todo some kind of filtering so we're not updating everything all the time
-    this.update();
+  handleDispatch(update_trigger) {
+    // We're listening for all updateMetric events, but we only want to update when it's intended for this result's specific metric
+    if (update_trigger.metric == this.props.metric) {
+      this.update();
+    }
   }
 
   update() {
@@ -81,6 +83,7 @@ class NumericMetricResult extends React.Component {
 }
 
 NumericMetricResult.propTypes = {
+  metric:   PropTypes.string,
   text:     PropTypes.string,
   value:    PropTypes.node,
   computer: PropTypes.func

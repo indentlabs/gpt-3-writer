@@ -15,12 +15,14 @@ class MetricCategory extends React.Component {
     super(props);
 
     this.state = {
+      category: this.props.category,
+
       // Convert passed-in metric names into the proper Metric objects
       metrics: this.props.metrics.map(this.metricLookupTable.bind(this))
     };
 
     this.state['metric_results'] = this.state.metrics.map((metric, i) => {
-      return <NumericMetricResult text={metric.result_label} computer={metric.compute} />
+      return <NumericMetricResult metric={metric.name} text={metric.result_label} computer={metric.compute} />
     });
   }
 
@@ -45,8 +47,10 @@ class MetricCategory extends React.Component {
   updateSection() {
     console.log('updating section');
 
-    // this.state.metrics.forEach((metric) => EventEmitter.dispatch('updateMetric' + , { category: 'length' }));
-    EventEmitter.dispatch('updateMetric', { category: 'length' });
+    this.state.metrics.forEach((metric) => EventEmitter.dispatch('updateMetric', { metric: metric.name }));
+
+    // this.state.metrics.forEach((metric) => EventEmitter.dispatch('updateMetric' + , { metric: metric.name }));
+    // EventEmitter.dispatch('updateMetric', { category: this.state.category });
   }
 
   render () {
