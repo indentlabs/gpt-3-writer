@@ -13,11 +13,6 @@ import 'materialize-css/dist/js/materialize'
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
 
-require("metrics")
-require("metrics/Metric")
-require("metrics/WordCountMetric")
-
-require("event_emitter")
 require("gpt-3")
 require("materialize")
 require("analysis")

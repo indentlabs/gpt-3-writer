@@ -1,13 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
-import NumericMetricResult from "./NumericMetricResult"
 
-import { EventEmitter } from "../event_emitter";
+import NumericMetricResult  from "./NumericMetricResult"
 
-import WordCountMetric from "../metrics/WordCountMetric"
-import PageCountMetric from "../metrics/PageCountMetric";
-import LetterCountMetric from "../metrics/LetterCountMetric";
-import SentenceCountMetric from "../metrics/SentenceCountMetric";
+import { EventEmitter }     from "../lib/event_emitter";
+
+import WordCountMetric      from "../metrics/WordCountMetric"
+import PageCountMetric      from "../metrics/PageCountMetric";
+import LetterCountMetric    from "../metrics/LetterCountMetric";
+import SentenceCountMetric  from "../metrics/SentenceCountMetric";
 import ParagraphCountMetric from "../metrics/ParagraphCountMetric";
 
 class MetricCategory extends React.Component {
@@ -28,29 +29,23 @@ class MetricCategory extends React.Component {
 
   metricLookupTable(metric_name) {
     switch (metric_name) {
-      case 'WordCountMetric':      return WordCountMetric;
-      case 'PageCountMetric':      return PageCountMetric;
-      case 'ParagraphCountMetric': return ParagraphCountMetric;
-      case 'SentenceCountMetric':  return SentenceCountMetric;
-      case 'LetterCountMetric':    return LetterCountMetric;
+      case WordCountMetric.name:      return WordCountMetric;
+      case PageCountMetric.name:      return PageCountMetric;
+      case ParagraphCountMetric.name: return ParagraphCountMetric;
+      case SentenceCountMetric.name:  return SentenceCountMetric;
+      case LetterCountMetric.name:    return LetterCountMetric;
     }
   }
 
   componentDidMount() {
-    console.log('mounted');
-
     $('.collapsible').collapsible({
       onOpenStart: this.updateSection.bind(this)
     });
   }
 
   updateSection() {
-    console.log('updating section');
-
+    // Update all metrics in this section before displaying it
     this.state.metrics.forEach((metric) => EventEmitter.dispatch('updateMetric', { metric: metric.name }));
-
-    // this.state.metrics.forEach((metric) => EventEmitter.dispatch('updateMetric' + , { metric: metric.name }));
-    // EventEmitter.dispatch('updateMetric', { category: this.state.category });
   }
 
   render () {
@@ -85,7 +80,5 @@ class MetricCategory extends React.Component {
 MetricCategory.propTypes = {
   category: PropTypes.string,
   metrics:  PropTypes.array
-  // value: PropTypes.node,
-  // code_ref: PropTypes.string
 };
 export default MetricCategory;

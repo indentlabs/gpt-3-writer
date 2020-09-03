@@ -1,20 +1,27 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { EventEmitter } from "../event_emitter";
+import { EventEmitter } from "../lib/event_emitter";
 
 class NumericMetricResult extends React.Component {
   constructor(props) {
     super(props);
 
     // TODO: register metric in its category hooks
-    // TODO: add metric to a named hook for specific refs
     this.state = {
-      value:   undefined,
-      loading: false
+      value:      undefined, // result displayed to the user
+      loading:    false,     // whether or not the result is currently being computed
+      up_to_date: false      // whether or not the text has changed since we last computed
     };
 
     EventEmitter.subscribe('updateMetric', (data) => this.handleDispatch(data));
+    EventEmitter.subscribe('textChanged',  (data) => this.markResultOutOfDate(data));
+  }
+
+  markResultOutOfDate() {
+    if (this.state.up_to_date) {
+      this.setState({ up_to_date: false });
+    }
   }
 
   computeValue() {
@@ -24,7 +31,7 @@ class NumericMetricResult extends React.Component {
 
   handleDispatch(update_trigger) {
     // We're listening for all updateMetric events, but we only want to update when it's intended for this result's specific metric
-    if (update_trigger.metric == this.props.metric) {
+    if (update_trigger.metric == this.props.metric && !this.state.up_to_date) {
       this.update();
     }
   }
@@ -34,8 +41,9 @@ class NumericMetricResult extends React.Component {
 
     console.log('updating');
     this.setState({
-      value:    this.computeValue(),
-      updating: false
+      value:      this.computeValue(),
+      updating:   false,
+      up_to_date: true
     });
   }
 
