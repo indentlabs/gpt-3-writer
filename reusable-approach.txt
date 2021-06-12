@@ -1,0 +1,7 @@
+define text-analytics service that takes, as parameters,
+-> function(text) { }
+-> element to put the result into
+-> categor(ies) to register hook under (so the editor can say things like "compute/update all the Length metrics" when opening Length collapsible)
+-> stubbed >formatter(text) to format the resulting number before putting it into element
+
+then just define all the metrics in a reusable file that notebook.ai can use also

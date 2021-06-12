@@ -1,0 +1,132 @@
+<ul id="slide-out" class="sidenav document-analytics-sidenav sidenav-fixed-todo">
+  <li>
+    <a href="#!/read-only-link" class="truncate">
+      <i class="material-icons left">leaderboard</i>
+      Document name that will probably wrap
+    </a>
+  </li>
+  <li><div class="divider"></div></li>
+  <li class="no-padding">
+    <%= 
+      react_component("MetricCategory", {
+        category: "Length",
+        metrics:  [
+          'WordCountMetric',
+          'PageCountMetric',
+          'ParagraphCountMetric',
+          'SentenceCountMetric',
+          'LetterCountMetric'
+        ]
+      })
+    %>
+  </li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">
+          Readability
+          <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li>
+              <ul class="collapsible collapsible-accordion">
+                <li>
+                  <a class="collapsible-header">
+                    Time to Read
+                    <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+                  </a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li>4,922 words</li>
+                      <li>3 pages</li>
+                      <li>319 paragraphs</li>
+                      <li>3,292 sentences</li>
+                      <li>32,129 letters</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>93% Ease of Reading<br />explanation</li>
+            <li>Word Variety</li>
+            <li>Word Complexity</li>
+            <li>N-syllable words chart</li>
+            <li>
+              <ul class="collapsible collapsible-accordion">
+                <li>
+                  <a class="collapsible-header">
+                    Parts of Speech
+                    <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+                  </a>
+                  <div class="collapsible-body">
+                    <ul>
+                      <li>4,922 words</li>
+                      <li>3 pages</li>
+                      <li>319 paragraphs</li>
+                      <li>3,292 sentences</li>
+                      <li>32,129 letters</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>Lexical richness (% unique words baseline comparison)</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">
+          Entities
+          <i class="material-icons">group</i><!-- or code | settings_ethernet | search | layers | science -->
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li>93% Ease of Reading<br />explanation</li>
+            <li>Word Variety</li>
+            <li>Word Complexity</li>
+            <li>N-syllable words chart</li>
+            <li>Lexical richness (% unique words baseline comparison)</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">
+          Sentiment
+          <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li class="blue white-text">93% Overall Sad</li>
+            <li>Evoked emotions</li>
+            <li>Character emotions</li>
+            <li>Emotional words</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <li class="no-padding">
+    <ul class="collapsible collapsible-accordion">
+      <li>
+        <a class="collapsible-header">
+          Style
+          <i class="material-icons">account_tree</i><!-- or code | settings_ethernet | search | layers | science -->
+        </a>
+        <div class="collapsible-body">
+          <ul>
+            <li>Words per sentence<br />plus graph</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
