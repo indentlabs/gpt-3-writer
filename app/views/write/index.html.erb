@@ -9,61 +9,10 @@
   <div class="helper-text">
     When you're satisfied with a name, you can start writing below!
   </div>
-  <div contentEditable="true" id="editor" class="card-panel">
-    <p>
-      Once upon a time there was a dragon named Dave that wanted to make friends.
-    </p>
-  </div>
+  <%= 
+    react_component("AffluentTextInput", { 
+      id: "editor", 
+      defaultText: "Once upon a time there was a dragon named Dave that wanted to make friends, but"
+    });
+  %>
 </div>
-
-<div class="suggestions container-fluid">
-  <div class="row">
-    <div class="col l3">
-      <div class="grey-text center uppertext">Suggestion #1</div>
-      <div class="hoverable card suggestion-card">
-        <div class="card-content suggestion" contentEditable="true">
-        </div>
-        <div class="card-action center teal use-suggestion">
-          <a href="#" class="white-text">Use this suggestion</a>
-        </div>
-      </div>
-    </div>
-    <div class="col l4">
-      <div class="grey-text center uppertext">Suggestion #2</div>
-      <div class="hoverable card suggestion-card">
-        <div class="card-content suggestion" contentEditable="true">
-        </div>
-        <div class="card-action center teal use-suggestion">
-          <a href="#" class="white-text">Use this suggestion</a>
-        </div>
-      </div>
-    </div>
-    <div class="col l3">
-      <div class="grey-text center uppertext">Suggestion #3</div>
-      <div class="hoverable card suggestion-card">
-        <div class="card-content suggestion" contentEditable="true">
-        </div>
-        <div class="card-action center teal use-suggestion">
-          <a href="#" class="white-text">Use this suggestion</a>
-        </div>
-      </div>
-    </div>
-    <div class="col l2">
-      <div class="grey-text center uppertext">Options</div>
-      <div class="center">
-        <%= link_to 'Retry suggestions', '#', class: 'btn regenerate-suggestions' %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="helper-text">...and when you aren't sure how to continue, press this button!</div>
-  <div id="continue-writing" class="btn btn-large">GPT-3, take the wheel</div>
-
-  <div class="progress" id="progress-bar">
-    <div class="indeterminate"></div>
-  </div>
-</div>
-
-
