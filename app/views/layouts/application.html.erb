@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Gpt3Writer</title>
+    <title>autoscribe</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -13,40 +13,24 @@
 
   <body>
     <div class="navbar-fixed">
-      <ul id="settings-dropdown" class="dropdown-content">
-
-        <li>
-          <p class="range-field">
-            <label for="test5">Chaos</label>
-            <input type="range" id="test5" min="0" max="100" step="25" />
-          </p>
-        </li>
-        <li><a href="#!">one</a></li>
-        <li><a href="#!">two</a></li>
-        <li class="divider"></li>
-        <li><a href="#!">three</a></li>
-      </ul>
       <nav class="teal">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo">
+          <a href="#" class="brand-logo center">
             &nbsp;
-            Asimov
+            <strong>auto</strong>scribe
           </a>
           <ul class="right hide-on-med-and-down">
-          <!--
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-          -->
+            <!--
             <li>
-              <a class="dropdown-trigger" href="#!" data-target="settings-dropdown">
-                Settings
-                <i class="material-icons right">arrow_drop_down</i>
-              </a>
+              <%= link_to '#', class: 'tooltipped', data: { tooltip: 'Configure your autowriter' } do %>
+                <i class="material-icons">person</i>
+              <% end %>
             </li>
+            -->
             <li>
-              <a href="#!">
-                Save
-              </a>
+              <%= link_to '#', class: 'tooltipped', data: { tooltip: 'Settings' } do %>
+                <i class="material-icons">settings</i>
+              <% end %>
             </li>
           </ul>
         </div>
