@@ -1,7 +1,9 @@
 $(document).ready(function () {
   $(".dropdown-trigger").dropdown({
     coverTrigger: false,
-    hover: true,
     closeOnClick: false
   });
+
+  $('.modal').modal();
+  $('select').formSelect();
 });

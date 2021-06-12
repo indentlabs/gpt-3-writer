@@ -22,19 +22,145 @@
           <ul class="right hide-on-med-and-down">
             <!--
             <li>
-              <%= link_to '#', class: 'tooltipped', data: { tooltip: 'Configure your autowriter' } do %>
+              <%= link_to '#', class: 'tooltipped', data: { tooltip: 'Your account' } do %>
                 <i class="material-icons">person</i>
               <% end %>
             </li>
             -->
+            <!--
             <li>
               <%= link_to '#', class: 'tooltipped', data: { tooltip: 'Settings' } do %>
                 <i class="material-icons">settings</i>
               <% end %>
             </li>
+            -->
+            <li>
+              <a class="waves-effect waves-light btn orange modal-trigger" href="#settings-modal">
+                <i class="material-icons left">settings</i>
+                Settings
+              </a>
+            </li>
           </ul>
         </div>
       </nav>
+    </div>
+
+    <div id="settings-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4 class="center">Settings</h4>
+        
+        <h5>Model selection</h5>
+        <div class="row">
+          <div class="input-field col s12 m12 l6">
+            <select>
+              <option value="" disabled selected>Choose your architecture</option>
+              <option value="1" selected>GPT-2</option>
+              <option value="2">GPT-3</option>
+              <option value="3">GPT-J</option>
+            </select>
+            <label>Architecture</label>
+          </div>
+          <div class="input-field col s12 m12 l6">
+            <select>
+              <option value="" disabled selected>Choose your specialized model</option>
+              <option value="1">General Fiction Writing</option>
+              <option value="1">Fantasy Writing</option>
+              <option value="1">Sci-Fi Writing</option>
+              <option value="2">Edgar Allan Poe</option>
+              <option value="3">H. P. Lovecraft</option>
+              <option value="3">J. R. R. Tolkien</option>
+            </select>
+            <label>Specialization (GPT-2)</label>
+          </div>
+          <div class="input-field col s12 m12 l6">
+            <select>
+              <option value="" disabled selected>Choose your provider</option>
+              <option value="1">OpenAI</option>
+              <option value="2">Huggingface</option>
+              <option value="3" selected>Indent Labs</option>
+            </select>
+            <label>Provider (GPT-2)</label>
+            <div class="helper-text">
+              Estimated cost: $0.00 per 1,000 generated words
+            </div>
+          </div>
+          <div class="input-field col s12 m12 l6">
+            <input type="text" placeholder="Paste API Key">
+            <label>API Key (Indent Labs)</label>
+            <div class="helper-text">
+              Click <%= link_to 'here', '#' %> to get your API key for Indent Labs.
+            </div>
+          </div>
+        </div>
+
+        <h5>Suggestion generation</h5>
+        <div class="row">
+          <div class="col s12 m12 l3">
+            <input type="text" value="3">
+            <label>
+              Number of suggestions
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+          <div class="col s12 m12 l3">
+            <input type="text" value="200">
+            <label>
+              Suggestion length (tokens)
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+          <div class="col s12 m12 l3">
+            <input type="text" value="1">
+            <label>
+              Best of
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+          <div class="col s12 m12 l3">
+            <i class="material-icons small teal-text" style="font-size: 1.4em">bar_chart</i>
+            Approximately <strong>600</strong> tokens will be used each time you generate
+            <strong>3</strong> suggestions.
+            <div class="grey-text">
+              <small>About <strong>$0.004</strong> per autocomplete</small>
+            </div>
+          </div>
+        </div>
+
+        <h5>Text generation preferences</h5>
+        <div class="row">
+          <div class="col s12 m12 l6">
+            <input type="text" value="0.7">
+            <label>
+              Temperature
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+          <div class="col s12 m12 l6">
+            <input type="text" value="0.95">
+            <label>
+              Top P
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+          <div class="col s12 m12 l6">
+            <input type="text" value="0">
+            <label>
+              Frequency Penalty
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+          <div class="col s12 m12 l6">
+            <input type="text" value="0">
+            <label>
+              Presence Penalty
+              <i class="material-icons right">help</i>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Save Changes</a>
+      </div>
     </div>
 
     <%= yield %>

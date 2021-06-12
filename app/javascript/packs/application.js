@@ -10,8 +10,8 @@ require("channels")
 require("jquery")
 
 import 'materialize-css/dist/js/materialize'
-import noUiSlider from 'nouislider';
-import 'nouislider/distribute/nouislider.css';
+// import noUiSlider from 'nouislider';
+// import 'nouislider/distribute/nouislider.css';
 
 require("gpt-3")
 require("materialize")
