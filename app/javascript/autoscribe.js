@@ -6,7 +6,19 @@ $(function() {
     $('#progress-bar').hide();
     $('.error-container').hide();
 
-    // TODO: show onboarding/setup modal
+    // Start onboarding!
+    setTimeout(function () {
+      $('#onboarding-modal').modal({
+        dismissible: true,
+        opacity: 0.8,
+        onCloseEnd: function() {
+          setTimeout(function () {
+            $('.pulse').removeClass('pulse');
+          }, 6000);
+        }
+      });
+      M.Modal.getInstance($('#onboarding-modal')).open();
+    }, 200);
   }
 
   function autoscribe_settings() {

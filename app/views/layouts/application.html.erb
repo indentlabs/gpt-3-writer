@@ -47,6 +47,47 @@
       </nav>
     </div>
 
+    <div id="onboarding-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Welcome to Autoscribe!</h4>
+        <hr />
+        <h5><strong>What is Autoscribe?</strong></h5>
+        <p class="justify">
+          Autoscribe is a simple text editor built to harness the power of cutting-edge technologies in
+          machine learning, natural language processing, and artificial intelligence to improve the writing process.
+        </p>
+        <p class="justify">
+          In other words, <span class="teal-text">no more writer's block!</span>
+        </p>
+        <h5>
+          <strong>How do I use it?</strong>
+        </h5>
+        <p class="justify">
+          Whenever you get stuck &mdash; or just don't know what to write next &mdash;
+          just click the orange pencil button in the bottom-right of the screen to let
+          your digital writing assistant propose some continuations to your story. Simply
+          select a good suggestion (or generate more until you find one you like!)
+          and then keep writing.
+        </p>
+        <p class="teal-text">
+          It's that simple!
+        </p>
+        <!--
+        <h5>
+          <strong>Some setup required</strong>
+        </h5>
+        <p class="justify">
+          Before you can use an AI assistant to help with your writing, you'll need to select
+          which of the following assistants you want to use. They each have different strengths,
+          weaknesses, and costs.
+        </p>
+        -->
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-close waves-effect waves-green btn-flat">Next: Choose my AI assistant</a>
+      </div>
+    </div>
+
     <div id="settings-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
         <h4 class="center">Autoscribe Settings</h4>
@@ -180,6 +221,26 @@
           Save Changes
         </a>
       </div>
+    </div>
+
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large orange pulse" id="continue-writing">
+        <i class="large material-icons tooltipped" data-tooltip="Solve writer's block" data-position="left">
+          mode_edit
+        </i>
+      </a>
+      <ul>
+        <li>
+          <a class="btn-floating orange darken-5 modal-trigger" href="#settings-modal">
+            <i class="material-icons tooltipped" data-tooltip="Autoscribe history" data-position="left">history</i>
+          </a>
+        </li>
+        <li>
+          <a class="btn-floating orange darken-5 modal-trigger" href="#settings-modal">
+            <i class="material-icons tooltipped" data-tooltip="Autoscribe settings" data-position="left">settings</i>
+          </a>
+        </li>
+      </ul>
     </div>
 
     <%= yield %>
