@@ -42,7 +42,6 @@ $(document).ready(function () {
       }, 2000);
 
       $('#continue-writing').removeAttr('disabled');
-      $('#continue-writing').hide();
     });
 
     return false;
@@ -70,7 +69,6 @@ $(document).ready(function () {
     // Clear out existing suggestions
     $('.suggestion').text('');
     $('.suggestions').hide();
-    $('#continue-writing').show();
     return false;
   });
 });

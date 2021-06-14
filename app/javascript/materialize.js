@@ -6,4 +6,6 @@ $(document).ready(function () {
 
   $('.modal').modal();
   $('select').formSelect();
+  $('.fixed-action-btn').floatingActionButton();
+  $('.tooltipped').tooltip();
 });
