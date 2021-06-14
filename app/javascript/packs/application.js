@@ -13,7 +13,7 @@ import 'materialize-css/dist/js/materialize'
 // import noUiSlider from 'nouislider';
 // import 'nouislider/distribute/nouislider.css';
 
-require("gpt-3")
+require("autoscribe")
 require("materialize")
 
 

@@ -1,8 +1,10 @@
-$(document).ready(function () {
-  $('#suggestions').hide();
-  $('#progress-bar').hide();
+$(function() {
+  function initialize() {
+    $('#suggestions').hide();
+    $('#progress-bar').hide();
+  }
 
-  $('#continue-writing').click(function () {
+  function generate_autoscribe_suggestions() {
     // Get the most-recent 1000 words
     var words_to_include = 1000;
     var story_title      = $('#title').text().trim();
@@ -45,9 +47,9 @@ $(document).ready(function () {
     });
 
     return false;
-  });
+  }
 
-  $('.use-suggestion').click(function () {
+  function use_suggestion() {
     // Instead of just directly concatenating the suggestion HTML onto $('#editor'), we
     // want to instead take a two-step approach to ensure we can continue on mid-sentence:
 
@@ -70,5 +72,10 @@ $(document).ready(function () {
     $('.suggestion').text('');
     $('.suggestions').hide();
     return false;
-  });
+  }
+
+  initialize();
+
+  $('#continue-writing').on('click', generate_autoscribe_suggestions);
+  $('.use-suggestion').on('click',   use_suggestion);
 });
