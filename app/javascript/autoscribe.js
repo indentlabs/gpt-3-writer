@@ -45,8 +45,8 @@ $(function() {
         topP: 1,
         presencePenalty: 0,
         frequencyPenalty: 0,
-        bestOf: 1,
-        n: 1,
+        bestOf: 3,
+        n: 3, // (increasing n: must also increase bestOf to be at least n)
         stream: false,
         // stop: ['\n', "testing"]
       });
@@ -76,32 +76,6 @@ $(function() {
 
       $('#continue-writing').removeAttr('disabled');
     })();
-
-    // $.post("/api/autocomplete", {
-    //   prompt: '"' + story_title + '"' + "\nby an anonymous author\n\n" + truncated_prompt
-    // }).done(function(suggestions) {
-    //   $('.suggestions').show();
-    //   $('#progress-bar').hide();
-
-    //   console.log("Suggestions: ");
-    //   console.log(suggestions);
-
-    //   var suggestion_containers = $('.suggestion');
-    //   suggestions.forEach(function (suggestion, index) {
-    //     var reformatted_suggestion = suggestion//.trim()
-    //       .split("\n\n").join("</p><p>")
-    //       .split("\n").join("</p></p>")
-    //       .split("”“").join("\"<br />\"");
-    //     $(suggestion_containers[index]).html("<p>" + reformatted_suggestion + "</p>");
-
-    //   });
-
-    //   $([document.documentElement, document.body]).animate({
-    //     scrollTop: $(".suggestions").offset().top
-    //   }, 2000);
-
-    //   $('#continue-writing').removeAttr('disabled');
-    // });
 
     return false;
   }
