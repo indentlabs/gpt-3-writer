@@ -9,6 +9,7 @@
     "jquery": "^3.5.1",
     "materialize-css": "^1.0.0",
     "nouislider": "^14.6.0",
+    "openai-api": "^1.2.3",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
