@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(function () {
   $(".dropdown-trigger").dropdown({
     coverTrigger: false,
     closeOnClick: false
