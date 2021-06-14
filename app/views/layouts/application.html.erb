@@ -52,41 +52,47 @@
         <h5>Model selection</h5>
         <div class="row">
           <div class="input-field col s12 m12 l6">
-            <select>
+            <select id='autoscribe-architecture'>
               <option value="" disabled selected>Choose your architecture</option>
-              <option value="1" selected>GPT-2</option>
-              <option value="2">GPT-3</option>
-              <option value="3">GPT-J</option>
+              <option value="GPT-2">GPT-2</option>
+              <option value="GPT-3" selected>GPT-3</option>
+              <option value="GPT-J">GPT-J</option>
             </select>
             <label>Architecture</label>
           </div>
           <div class="input-field col s12 m12 l6">
-            <select>
-              <option value="" disabled selected>Choose your specialized model</option>
+            <select id='autoscribe-model'>
+              <option value="" disabled selected>Choose your model</option>
+              <option value="davinci">Davinci</option>
+              <option value="curie">Curie</option>
+              <option value="babbage">Babbage</option>
+              <option value="ada" selected>Ada</option>
+              <!--
               <option value="1">General Fiction Writing</option>
               <option value="1">Fantasy Writing</option>
               <option value="1">Sci-Fi Writing</option>
               <option value="2">Edgar Allan Poe</option>
               <option value="3">H. P. Lovecraft</option>
               <option value="3">J. R. R. Tolkien</option>
+              -->
             </select>
-            <label>Specialization (GPT-2)</label>
+            <label>Specialization (GPT-3)</label>
           </div>
           <div class="input-field col s12 m12 l6">
-            <select>
+            <select id='autoscribe-provider'>
               <option value="" disabled selected>Choose your provider</option>
-              <option value="1">OpenAI</option>
-              <option value="2">Huggingface</option>
-              <option value="3" selected>Indent Labs</option>
+              <option value="OpenAI" selected>OpenAI</option>
+              <option value="Huggingface">Huggingface</option>
+              <option value="Indent Labs">Indent Labs</option>
             </select>
-            <label>Provider (GPT-2)</label>
+            <label>Provider (GPT-3)</label>
             <div class="helper-text">
               Estimated cost: $0.00 per 1,000 generated words
             </div>
           </div>
           <div class="input-field col s12 m12 l6">
-            <input type="text" placeholder="Paste API Key" id="api-key">
-            <label>API Key (Indent Labs)</label>
+            <input type="text" placeholder="Paste API Key" id="autoscribe-api-key">
+            <label>API Key (OpenAI)</label>
             <div class="helper-text">
               Click <%= link_to 'here', '#' %> to get your API key for Indent Labs.
             </div>
@@ -96,28 +102,28 @@
         <h5>Suggestion generation</h5>
         <div class="row">
           <div class="col s12 m12 l3">
-            <input type="number" value="1000">
+            <input type="number" value="1000" id='autoscribe-context-window'>
             <label>
               Context window (words)
               <i class="material-icons right">help</i>
             </label>
           </div>
           <div class="col s12 m12 l3">
-            <input type="number" value="3">
+            <input type="number" value="3" id='autoscribe-suggestion-n'>
             <label>
               Number of suggestions
               <i class="material-icons right">help</i>
             </label>
           </div>
           <div class="col s12 m12 l3">
-            <input type="number" value="200">
+            <input type="number" value="200" id='autoscribe-suggestion-length'>
             <label>
               Suggestion length (tokens)
               <i class="material-icons right">help</i>
             </label>
           </div>
           <div class="col s12 m12 l3">
-            <input type="number" value="1">
+            <input type="number" value="1" id='autoscribe-suggestion-best-of'>
             <label>
               Best of
               <i class="material-icons right">help</i>
@@ -125,7 +131,9 @@
           </div>
           <div class="col s12 m12 l12 center" style='margin-top: 1.5em'>
             <i class="material-icons small teal-text icon-bump-down" style="font-size: 1.4em">bar_chart</i>
-            Approximately <strong>600</strong> tokens will be used each time you generate
+            Approximately
+            <strong>600</strong>
+            tokens will be used each time you generate
             <strong>3</strong> suggestions.
             <div class="grey-text">
               <small>About <strong>$0.004</strong> per autocomplete</small>
@@ -136,28 +144,28 @@
         <h5>Text generation preferences</h5>
         <div class="row">
           <div class="col s12 m12 l6">
-            <input type="number" value="0.7">
+            <input type="number" value="0.7" id='autoscribe-temperature'>
             <label>
               Temperature
               <i class="material-icons right">help</i>
             </label>
           </div>
           <div class="col s12 m12 l6">
-            <input type="number" value="0.95">
+            <input type="number" value="0.95" id='autoscribe-top-p'>
             <label>
               Top P
               <i class="material-icons right">help</i>
             </label>
           </div>
           <div class="col s12 m12 l6">
-            <input type="number" value="0">
+            <input type="number" value="0" id='autoscribe-frequency-penalty'>
             <label>
               Frequency Penalty
               <i class="material-icons right">help</i>
             </label>
           </div>
           <div class="col s12 m12 l6">
-            <input type="number" value="0">
+            <input type="number" value="0" id='autoscribe-presence-penalty'>
             <label>
               Presence Penalty
               <i class="material-icons right">help</i>
@@ -166,7 +174,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class="modal-close teal white-text waves-effect waves-green btn-flat">Save Changes</a>
+        <a href="#" class="modal-close teal white-text waves-effect waves-green btn-flat">
+          Save Changes
+        </a>
       </div>
     </div>
 

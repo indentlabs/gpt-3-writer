@@ -8,6 +8,31 @@ $(function() {
     // TODO: show onboarding/setup modal
   }
 
+  function autoscribe_settings() {
+    let settings = {
+      architecture:       $('#autoscribe-architecture').val(),
+      model:              $('#autoscribe-model').val(),
+      provider:           $('#autoscribe-provider').val(),
+      api_key:            $('#autoscribe-api-key').val(),
+      context_window:     Number($('#autoscribe-context-window').val()),
+      suggestion_count:   Number($('#autoscribe-suggestion-n').val()),
+      suggestion_length:  Number($('#autoscribe-suggestion-length').val()),
+      suggestion_best_of: Number($('#autoscribe-suggestion-best-of').val()),
+      temperature:        Number($('#autoscribe-temperature').val()),
+      top_p:              Number($('#autoscribe-top-p').val()),
+      frequency_penalty:  Number($('#autoscribe-frequency-penalty').val()),
+      presence_penalty:   Number($('#autoscribe-presence-penalty').val())
+    };
+
+    // Increase bestOf to at least match suggestion count (n)
+    if (settings.suggestion_count > settings.suggestion_best_of) {
+      settings.suggestion_best_of = settings.suggestion_count;
+    }
+
+    return settings;
+  }
+  console.log(autoscribe_settings());
+
   function wrap_context_window_with_prompt_formatting(context_window) {
     var story_title = $('#title').text().trim();
 
@@ -19,11 +44,12 @@ $(function() {
   }
 
   function generate_autoscribe_suggestions_with_gpt3() {
-    const OPENAI_API_KEY = $('#api-key').val();
+    const settings       = autoscribe_settings();
+    const OPENAI_API_KEY = settings.api_key;
     const openai         = new OpenAI(OPENAI_API_KEY);
 
     // Get the most-recent 1000 words
-    var words_to_include = 1000;
+    var words_to_include = settings.context_window;
     var full_prompt      = $('#editor').first().html()
                             .split("</p><p>").join("\n\n")
                             .split("<p>").join("")
@@ -39,16 +65,15 @@ $(function() {
     (async () => {
       const gptResponse = await openai.complete({
         engine: 'ada',
-        prompt: wrap_context_window_with_prompt_formatting('Once upon a time'),
-        maxTokens: 5,
-        temperature: 0.9,
-        topP: 1,
-        presencePenalty: 0,
-        frequencyPenalty: 0,
-        bestOf: 3,
-        n: 3, // (increasing n: must also increase bestOf to be at least n)
-        stream: false,
-        // stop: ['\n', "testing"]
+        prompt: wrap_context_window_with_prompt_formatting(truncated_prompt),
+        maxTokens:        settings.suggestion_length,
+        temperature:      settings.temperature,
+        topP:             settings.top_p,
+        presencePenalty:  settings.presence_penalty,
+        frequencyPenalty: settings.frequency_penalty,
+        bestOf:           settings.suggestion_best_of,
+        n:                settings.suggestion_count, 
+        stream:           false,
       });
 
       console.log(gptResponse.data);
