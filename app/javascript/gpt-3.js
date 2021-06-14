@@ -2,7 +2,7 @@ $(document).ready(function () {
   $('#suggestions').hide();
   $('#progress-bar').hide();
 
-  $('#continue-writing, .regenerate-suggestions').click(function () {
+  $('#continue-writing').click(function () {
     // Get the most-recent 1000 words
     var words_to_include = 1000;
     var story_title      = $('#title').text().trim();
