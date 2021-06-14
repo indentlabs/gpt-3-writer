@@ -4,6 +4,7 @@ $(function() {
   function initialize() {
     $('#suggestions').hide();
     $('#progress-bar').hide();
+    $('.error-container').hide();
 
     // TODO: show onboarding/setup modal
   }
@@ -31,7 +32,14 @@ $(function() {
 
     return settings;
   }
-  console.log(autoscribe_settings());
+
+  function show_error(error) {
+    $('#progress-bar').hide();
+    $('#continue-writing').removeAttr('disabled');
+
+    $('.error-container').show();
+    $('.error-container').find('.error-text').text(error);
+  }
 
   function wrap_context_window_with_prompt_formatting(context_window) {
     var story_title = $('#title').text().trim();
@@ -74,32 +82,34 @@ $(function() {
         bestOf:           settings.suggestion_best_of,
         n:                settings.suggestion_count, 
         stream:           false,
-      });
+      }).catch(error => show_error(error));
 
-      console.log(gptResponse.data);
-      const suggestions = gptResponse.data.choices.map(choice => choice.text);
-
-      $('.suggestions').show();
-      $('#progress-bar').hide();
-
-      console.log("Suggestions: ");
-      console.log(suggestions);
-
-      var suggestion_containers = $('.suggestion');
-      suggestions.forEach(function (suggestion, index) {
-        var reformatted_suggestion = suggestion//.trim()
-          .split("\n\n").join("</p><p>")
-          .split("\n").join("</p></p>")
-          .split("”“").join("\"<br />\"");
-        $(suggestion_containers[index]).html("<p>" + reformatted_suggestion + "</p>");
-
-      });
-
-      $([document.documentElement, document.body]).animate({
-        scrollTop: $(".suggestions").offset().top
-      }, 2000);
-
-      $('#continue-writing').removeAttr('disabled');
+      if (gptResponse) {
+        console.log(gptResponse.data);
+        const suggestions = gptResponse.data.choices.map(choice => choice.text);
+  
+        $('.suggestions').show();
+        $('#progress-bar').hide();
+  
+        console.log("Suggestions: ");
+        console.log(suggestions);
+  
+        var suggestion_containers = $('.suggestion');
+        suggestions.forEach(function (suggestion, index) {
+          var reformatted_suggestion = suggestion//.trim()
+            .split("\n\n").join("</p><p>")
+            .split("\n").join("</p></p>")
+            .split("”“").join("\"<br />\"");
+          $(suggestion_containers[index]).html("<p>" + reformatted_suggestion + "</p>");
+  
+        });
+  
+        $([document.documentElement, document.body]).animate({
+          scrollTop: $(".suggestions").offset().top
+        }, 2000);
+  
+        $('#continue-writing').removeAttr('disabled');
+      }      
     })();
 
     return false;
