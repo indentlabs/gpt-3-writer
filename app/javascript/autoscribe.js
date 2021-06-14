@@ -1,13 +1,29 @@
+const OpenAI = require('openai-api');
+
 $(function() {
   function initialize() {
     $('#suggestions').hide();
     $('#progress-bar').hide();
+
+    // TODO: show onboarding/setup modal
+  }
+
+  function wrap_context_window_with_prompt_formatting(context_window) {
+    var story_title = $('#title').text().trim();
+
+    return '"' + story_title + '"' + "\nby an anonymous author\n\n" + context_window;
   }
 
   function generate_autoscribe_suggestions() {
+    generate_autoscribe_suggestions_with_gpt3();
+  }
+
+  function generate_autoscribe_suggestions_with_gpt3() {
+    const OPENAI_API_KEY = $('#api-key').val();
+    const openai         = new OpenAI(OPENAI_API_KEY);
+
     // Get the most-recent 1000 words
     var words_to_include = 1000;
-    var story_title      = $('#title').text().trim();
     var full_prompt      = $('#editor').first().html()
                             .split("</p><p>").join("\n\n")
                             .split("<p>").join("")
@@ -20,9 +36,24 @@ $(function() {
     $('#progress-bar').show();
     $('.helper-text').hide();
 
-    $.post("/api/autocomplete", {
-      prompt: '"' + story_title + '"' + "\nby an anonymous author\n\n" + truncated_prompt
-    }).done(function(suggestions) {
+    (async () => {
+      const gptResponse = await openai.complete({
+        engine: 'ada',
+        prompt: wrap_context_window_with_prompt_formatting('Once upon a time'),
+        maxTokens: 5,
+        temperature: 0.9,
+        topP: 1,
+        presencePenalty: 0,
+        frequencyPenalty: 0,
+        bestOf: 1,
+        n: 1,
+        stream: false,
+        // stop: ['\n', "testing"]
+      });
+
+      console.log(gptResponse.data);
+      const suggestions = gptResponse.data.choices.map(choice => choice.text);
+
       $('.suggestions').show();
       $('#progress-bar').hide();
 
@@ -44,7 +75,33 @@ $(function() {
       }, 2000);
 
       $('#continue-writing').removeAttr('disabled');
-    });
+    })();
+
+    // $.post("/api/autocomplete", {
+    //   prompt: '"' + story_title + '"' + "\nby an anonymous author\n\n" + truncated_prompt
+    // }).done(function(suggestions) {
+    //   $('.suggestions').show();
+    //   $('#progress-bar').hide();
+
+    //   console.log("Suggestions: ");
+    //   console.log(suggestions);
+
+    //   var suggestion_containers = $('.suggestion');
+    //   suggestions.forEach(function (suggestion, index) {
+    //     var reformatted_suggestion = suggestion//.trim()
+    //       .split("\n\n").join("</p><p>")
+    //       .split("\n").join("</p></p>")
+    //       .split("”“").join("\"<br />\"");
+    //     $(suggestion_containers[index]).html("<p>" + reformatted_suggestion + "</p>");
+
+    //   });
+
+    //   $([document.documentElement, document.body]).animate({
+    //     scrollTop: $(".suggestions").offset().top
+    //   }, 2000);
+
+    //   $('#continue-writing').removeAttr('disabled');
+    // });
 
     return false;
   }
