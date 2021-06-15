@@ -4,6 +4,7 @@ $(function () {
     closeOnClick: false
   });
 
+  $('.tabs').tabs();
   $('.modal').modal();
   $('select').formSelect();
   $('.fixed-action-btn').floatingActionButton();

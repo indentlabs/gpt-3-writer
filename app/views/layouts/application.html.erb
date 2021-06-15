@@ -96,131 +96,262 @@
 
     <div id="settings-modal" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <h4 class="center">Autoscribe Settings</h4>
+        <h4>Autoscribe Settings</h4>
+
+        <ul class="tabs tabs-fixed-width">
+          <li class="tab">
+            <a href="#settings-simple" class="selected">Simplified</a>
+          </li>
+          <li class="tab">
+            <a href="#settings-advanced">Advanced</a>
+          </li>
+        </ul>
+        <div id="settings-simple" class="col s12">
         
-        <h5>Model selection</h5>
-        <div class="row">
-          <div class="input-field col s12 m12 l6">
-            <select id='autoscribe-architecture'>
-              <option value="" disabled selected>Choose your architecture</option>
-              <option value="GPT-2">GPT-2</option>
-              <option value="GPT-3" selected>GPT-3</option>
-              <option value="GPT-J">GPT-J</option>
-            </select>
-            <label>Architecture</label>
-          </div>
-          <div class="input-field col s12 m12 l6">
-            <select id='autoscribe-model'>
-              <option value="" disabled selected>Choose your model</option>
-              <option value="davinci">Davinci</option>
-              <option value="curie">Curie</option>
-              <option value="babbage">Babbage</option>
-              <option value="ada" selected>Ada</option>
-              <!--
-              <option value="1">General Fiction Writing</option>
-              <option value="1">Fantasy Writing</option>
-              <option value="1">Sci-Fi Writing</option>
-              <option value="2">Edgar Allan Poe</option>
-              <option value="3">H. P. Lovecraft</option>
-              <option value="3">J. R. R. Tolkien</option>
-              -->
-            </select>
-            <label>Specialization (GPT-3)</label>
-          </div>
-          <div class="input-field col s12 m12 l6">
-            <select id='autoscribe-provider'>
-              <option value="" disabled selected>Choose your provider</option>
-              <option value="OpenAI" selected>OpenAI</option>
-              <option value="Huggingface">Huggingface</option>
-              <option value="Indent Labs">Indent Labs</option>
-            </select>
-            <label>Provider (GPT-3)</label>
-            <div class="helper-text">
-              Estimated cost: $0.00 per 1,000 generated words
-            </div>
-          </div>
-          <div class="input-field col s12 m12 l6">
-            <input type="text" placeholder="Paste API Key" id="autoscribe-api-key">
-            <label>API Key (OpenAI)</label>
-            <div class="helper-text">
-              Click <%= link_to 'here', '#' %> to get your API key for Indent Labs.
-            </div>
-          </div>
-        </div>
+          <h5>Click to choose which writing assistant to use</h5>
+          <div class="row">
+            <div class="col s12 m12 l6">
 
-        <h5>Suggestion generation</h5>
-        <div class="row">
-          <div class="col s12 m12 l3">
-            <input type="number" value="1000" id='autoscribe-context-window'>
-            <label>
-              Context window (words)
-              <i class="material-icons right">help</i>
-            </label>
+              <div class="card hoverable">
+                <div class="card-content">
+                  <div class="card-title">
+                    <i class="material-icons left">format_textdirection_l_to_r</i>
+                    GPT-2
+                  </div>
+                  <p>
+                    <strong>Strength:</strong> Genre matching, price
+                  </p>
+                  <p>
+                    <strong>Weakness:</strong> Continuity
+                  </p>
+                  <p>
+                    <strong>Recommended genres:</strong> Science fiction, horror
+                  </p>
+                </div>
+              </div>
+
+              <div class="card orange lighten-2 hoverable">
+                <div class="card-content">
+                  <div class="card-title">
+                    <i class="material-icons left">format_textdirection_l_to_r</i>
+                    GPT-3
+                  </div>
+                  <p>
+                    <strong>Strength:</strong> Stylistic matching
+                  </p>
+                  <p>
+                    <strong>Weakness:</strong> Price
+                  </p>
+                  <p>
+                    <strong>Recommended genres:</strong> Fantasy, romance
+                  </p>
+                </div>
+              </div>
+
+              <div class="card hoverable">
+                <div class="card-content">
+                  <div class="card-title">
+                    <i class="material-icons left">format_textdirection_l_to_r</i>
+                    GPT-J
+                  </div>
+                  <p>
+                    <strong>Strength:</strong> Stylistic matching, price
+                  </p>
+                  <p>
+                    <strong>Weakness:</strong> Continuity
+                  </p>
+                  <p>
+                    <strong>Recommended genres:</strong> Fantasy, horror
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 m12 l6">
+              <p class="justify">
+                The assistant you've selected is provided by
+                <span class='js-provider-name'>OpenAI</span>
+                and requires an API key to use.
+                Please visit <%= link_to 'this link', 'https://beta.openai.com/account/api-keys', target: '_blank' %> and copy your API key
+                to paste into the box below:
+              </p>
+              <div class="input-field">
+                <input type="text" placeholder="Paste your OpenAI API Key" id="simple-autoscribe-api-key">
+                <div class="helper-text">
+                  Your API key will not be stored by Autoscribe in any way.
+                </div>
+              </div>
+
+              <br />
+
+              <h5>Personalize your assistant further</h5>
+              <p>
+                <label>
+                  <input name="group1" type="radio" checked />
+                  <span class="black-text">
+                    <strong>Davinci</strong> - Most expensive, slowest, highest quality
+                  </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" />
+                  <span class="black-text">
+                    <strong>Curie</strong> - More expensive, slower, high quality
+                  </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" />
+                  <span class="black-text">
+                    <strong>Babbage</strong> - Cheaper, faster, lower quality
+                  </span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input name="group1" type="radio" />
+                  <span class="black-text">
+                    <strong>Ada</strong> - Cheapest, fastest, lowest quality
+                  </span>
+                </label>
+              </p>
+
+              <p>
+                You can change these settings at any time.
+              </p>
+            </div>
           </div>
-          <div class="col s12 m12 l3">
-            <input type="number" value="3" id='autoscribe-suggestion-n'>
-            <label>
-              Number of suggestions
-              <i class="material-icons right">help</i>
-            </label>
+          
+        
+        </div>
+        <div id="settings-advanced" class="col s12">
+          <h5>Model selection</h5>
+          <div class="row">
+            <div class="input-field col s12 m12 l6">
+              <select id='autoscribe-architecture'>
+                <option value="" disabled selected>Choose your architecture</option>
+                <option value="GPT-2">GPT-2</option>
+                <option value="GPT-3" selected>GPT-3</option>
+                <option value="GPT-J">GPT-J</option>
+              </select>
+              <label>Architecture</label>
+            </div>
+            <div class="input-field col s12 m12 l6">
+              <select id='autoscribe-model'>
+                <option value="" disabled selected>Choose your model</option>
+                <option value="davinci">Davinci</option>
+                <option value="curie">Curie</option>
+                <option value="babbage">Babbage</option>
+                <option value="ada" selected>Ada</option>
+                <!--
+                <option value="1">General Fiction Writing</option>
+                <option value="1">Fantasy Writing</option>
+                <option value="1">Sci-Fi Writing</option>
+                <option value="2">Edgar Allan Poe</option>
+                <option value="3">H. P. Lovecraft</option>
+                <option value="3">J. R. R. Tolkien</option>
+                -->
+              </select>
+              <label>Model (GPT-3)</label>
+            </div>
+            <div class="input-field col s12 m12 l6">
+              <select id='autoscribe-provider'>
+                <option value="" disabled selected>Choose your provider</option>
+                <option value="OpenAI" selected>OpenAI</option>
+                <option value="Huggingface">Huggingface</option>
+                <option value="Indent Labs">Indent Labs</option>
+              </select>
+              <label>Provider (GPT-3)</label>
+              <div class="helper-text">
+                Estimated cost: $0.00 per 1,000 generated words
+              </div>
+            </div>
+            <div class="input-field col s12 m12 l6">
+              <input type="text" placeholder="Paste API Key" id="autoscribe-api-key">
+              <label>API Key (OpenAI)</label>
+              <div class="helper-text">
+                Click <%= link_to 'here', 'https://beta.openai.com/account/api-keys', target: '_blank' %> to get your API key for Indent Labs.
+              </div>
+            </div>
           </div>
-          <div class="col s12 m12 l3">
-            <input type="number" value="3" id='autoscribe-suggestion-length'>
-            <label>
-              Suggestion length (tokens)
-              <i class="material-icons right">help</i>
-            </label>
+
+          <h5>Suggestion generation</h5>
+          <div class="row">
+            <div class="col s12 m12 l3">
+              <input type="number" value="1000" id='autoscribe-context-window'>
+              <label>
+                Context window (words)
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l3">
+              <input type="number" value="3" id='autoscribe-suggestion-n'>
+              <label>
+                Number of suggestions
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l3">
+              <input type="number" value="10" id='autoscribe-suggestion-length'>
+              <label>
+                Suggestion length (tokens)
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l3">
+              <input type="number" value="3" id='autoscribe-suggestion-best-of'>
+              <label>
+                Best of
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l12 center" style='margin-top: 1.5em'>
+              <i class="material-icons small teal-text icon-bump-down" style="font-size: 1.4em">bar_chart</i>
+              Approximately
+              <strong>600</strong>
+              tokens will be used each time you generate
+              <strong>3</strong> suggestions.
+              <div class="grey-text">
+                <small>About <strong>$0.004</strong> per autocomplete</small>
+              </div>
+            </div>
           </div>
-          <div class="col s12 m12 l3">
-            <input type="number" value="1" id='autoscribe-suggestion-best-of'>
-            <label>
-              Best of
-              <i class="material-icons right">help</i>
-            </label>
-          </div>
-          <div class="col s12 m12 l12 center" style='margin-top: 1.5em'>
-            <i class="material-icons small teal-text icon-bump-down" style="font-size: 1.4em">bar_chart</i>
-            Approximately
-            <strong>600</strong>
-            tokens will be used each time you generate
-            <strong>3</strong> suggestions.
-            <div class="grey-text">
-              <small>About <strong>$0.004</strong> per autocomplete</small>
+
+          <h5>Text generation preferences</h5>
+          <div class="row">
+            <div class="col s12 m12 l6">
+              <input type="number" value="0.7" id='autoscribe-temperature'>
+              <label>
+                Temperature
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l6">
+              <input type="number" value="0.95" id='autoscribe-top-p'>
+              <label>
+                Top P
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l6">
+              <input type="number" value="0" id='autoscribe-frequency-penalty'>
+              <label>
+                Frequency Penalty
+                <i class="material-icons right">help</i>
+              </label>
+            </div>
+            <div class="col s12 m12 l6">
+              <input type="number" value="0" id='autoscribe-presence-penalty'>
+              <label>
+                Presence Penalty
+                <i class="material-icons right">help</i>
+              </label>
             </div>
           </div>
         </div>
-
-        <h5>Text generation preferences</h5>
-        <div class="row">
-          <div class="col s12 m12 l6">
-            <input type="number" value="0.7" id='autoscribe-temperature'>
-            <label>
-              Temperature
-              <i class="material-icons right">help</i>
-            </label>
-          </div>
-          <div class="col s12 m12 l6">
-            <input type="number" value="0.95" id='autoscribe-top-p'>
-            <label>
-              Top P
-              <i class="material-icons right">help</i>
-            </label>
-          </div>
-          <div class="col s12 m12 l6">
-            <input type="number" value="0" id='autoscribe-frequency-penalty'>
-            <label>
-              Frequency Penalty
-              <i class="material-icons right">help</i>
-            </label>
-          </div>
-          <div class="col s12 m12 l6">
-            <input type="number" value="0" id='autoscribe-presence-penalty'>
-            <label>
-              Presence Penalty
-              <i class="material-icons right">help</i>
-            </label>
-          </div>
-        </div>
+        
+        
       </div>
       <div class="modal-footer">
         <a href="#" class="modal-close teal white-text waves-effect waves-green btn-flat">
