@@ -1,4 +1,14 @@
 $(function() {
+  function update_architecture_ui(architecture) {
+
+  }
+  function update_model_ui(model) {
+
+  }
+  function update_provider_ui(model) {
+
+  }
+
   // Simplified architecture settings (sync to advanced)
   $('.simplified-assistant-option').on('click', function () {
     // Update UI to show this assistant is selected

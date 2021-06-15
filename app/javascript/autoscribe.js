@@ -9,7 +9,7 @@ $(function() {
     // Start onboarding!
     setTimeout(function () {
       $('#onboarding-modal').modal({
-        dismissible: true,
+        dismissible: false,
         opacity: 0.8,
         onCloseEnd: function() {
           setTimeout(function () {
@@ -60,10 +60,22 @@ $(function() {
   }
 
   function generate_autoscribe_suggestions() {
+    console.log(autoscribe_settings());
+    if (autoscribe_settings().api_key == '') {
+      M.Modal.getInstance($('#settings-modal')).open();
+      M.toast({ html: 'You need to enter your API key before you can autoscribe!' });
+
+      // Highlight the API key fields even more
+      $('#simple-autoscribe-api-key').addClass('red darken-2');
+      $('#autoscribe-api-key').addClass('red darken-2');
+
+      return;
+    }
+
     generate_autoscribe_suggestions_with_gpt3();
   }
 
-  function populate_autoscribe_suggestions_ui() {
+  function populate_autoscribe_suggestions_ui(suggestions) {
     $('.suggestions').show();
     $('#progress-bar').hide();
 
