@@ -150,6 +150,7 @@
                 </div>
               </div>
 
+              <!--
               <div class="card hoverable simplified-assistant-option" data-architecture="GPT-J">
                 <div class="card-content">
                   <div class="card-title">
@@ -167,6 +168,7 @@
                   </p>
                 </div>
               </div>
+              -->
 
               <p class="center grey-text">
                 More assistants are coming soon.
@@ -236,9 +238,9 @@
             <div class="input-field col s12 m12 l6">
               <select id='autoscribe-architecture'>
                 <option value="" disabled selected>Choose your architecture</option>
-                <option value="GPT-2">GPT-2</option>
+                <option value="GPT-2" disabled>GPT-2</option>
                 <option value="GPT-3" selected>GPT-3</option>
-                <option value="GPT-J">GPT-J</option>
+                <option value="GPT-J" disabled>GPT-J</option>
               </select>
               <label>Architecture</label>
             </div>
@@ -276,7 +278,7 @@
               <input type="text" placeholder="Paste API Key" id="autoscribe-api-key">
               <label>API Key (OpenAI)</label>
               <div class="helper-text">
-                Click <%= link_to 'here', 'https://beta.openai.com/account/api-keys', target: '_blank' %> to get your API key for Indent Labs.
+                Click <%= link_to 'here', 'https://beta.openai.com/account/api-keys', target: '_blank' %> to get your API key for OpenAI.
               </div>
             </div>
           </div>
