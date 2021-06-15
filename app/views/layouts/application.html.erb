@@ -183,7 +183,7 @@
                 to paste into the box below:
               </p>
               <div class="input-field">
-                <input type="text" placeholder="Paste your OpenAI API Key" id="simple-autoscribe-api-key">
+                <input type="text" placeholder="Paste your OpenAI API Key here" id="simple-autoscribe-api-key">
                 <div class="helper-text">
                   Your API key will not be stored by Autoscribe in any way.
                 </div>
@@ -266,8 +266,8 @@
               <select id='autoscribe-provider'>
                 <option value="" disabled selected>Choose your provider</option>
                 <option value="OpenAI" selected>OpenAI</option>
-                <option value="Huggingface">Huggingface</option>
-                <option value="Indent Labs">Indent Labs</option>
+                <option value="Huggingface" disabled>Huggingface</option>
+                <option value="Indent Labs" disabled>Indent Labs</option>
               </select>
               <label>Provider (GPT-3)</label>
               <div class="helper-text">
@@ -275,7 +275,7 @@
               </div>
             </div>
             <div class="input-field col s12 m12 l6">
-              <input type="text" placeholder="Paste API Key" id="autoscribe-api-key">
+              <input type="text" placeholder="Paste API Key here" id="autoscribe-api-key">
               <label>API Key (OpenAI)</label>
               <div class="helper-text">
                 Click <%= link_to 'here', 'https://beta.openai.com/account/api-keys', target: '_blank' %> to get your API key for OpenAI.

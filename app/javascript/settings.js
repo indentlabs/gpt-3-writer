@@ -24,6 +24,11 @@ $(function() {
     $('#autoscribe-model').val($(this).val()).formSelect();
   });
 
+  // Simplified --> Advanced API key sync
+  $('#simple-autoscribe-api-key').on('change', function () {
+    $('#autoscribe-api-key').val($(this).val());
+  });
+
   // Advanced architecture change (sync to simplified)
   $('#autoscribe-architecture').on('change', function () {
     // Update UI to show this assistant is selected
@@ -34,5 +39,10 @@ $(function() {
   // Advanced model change (sync to simplified)
   $('#autoscribe-model').on('change', function () {
     $('input[name=simplified-model][value="' + $(this).val() + '"]').prop('checked', true);
+  });
+
+  // Advanced --> Simplified API key sync
+  $('#autoscribe-api-key').on('change', function () {
+    $('#simple-autoscribe-api-key').val($(this).val());
   });
 });
