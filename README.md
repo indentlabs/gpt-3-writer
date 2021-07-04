@@ -1,24 +1,3 @@
-# README
+# gpt-3-writer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A quick editor for generating multiple GPT-3 completions at a time. Provides some quick UI actions to edit completions in-place and/or append them to the document. Uses a customizable context window that pulls the most recent N words from the document to use in a formatted prompt.
