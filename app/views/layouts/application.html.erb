@@ -150,7 +150,6 @@
                 </div>
               </div>
 
-              <!--
               <div class="card hoverable simplified-assistant-option" data-architecture="GPT-J">
                 <div class="card-content">
                   <div class="card-title">
@@ -168,7 +167,6 @@
                   </p>
                 </div>
               </div>
-              -->
 
               <p class="center grey-text">
                 More assistants are coming soon.
@@ -240,7 +238,7 @@
                 <option value="" disabled selected>Choose your architecture</option>
                 <option value="GPT-2" disabled>GPT-2</option>
                 <option value="GPT-3" selected>GPT-3</option>
-                <option value="GPT-J" disabled>GPT-J</option>
+                <option value="GPT-J">GPT-J</option>
               </select>
               <label>Architecture</label>
             </div>
@@ -260,7 +258,7 @@
                 <option value="3">J. R. R. Tolkien</option>
                 -->
               </select>
-              <label>Model (GPT-3)</label>
+              <label>Model (<span class="selected-architecture-name">GPT-3</span>)</label>
             </div>
             <div class="input-field col s12 m12 l6">
               <select id='autoscribe-provider'>
@@ -269,14 +267,14 @@
                 <option value="Huggingface" disabled>Huggingface</option>
                 <option value="Indent Labs" disabled>Indent Labs</option>
               </select>
-              <label>Provider (GPT-3)</label>
+              <label>Provider (<span class="selected-architecture-name">GPT-3</span>)</label>
               <div class="helper-text">
                 Estimated cost: $0.00 per 1,000 generated words
               </div>
             </div>
             <div class="input-field col s12 m12 l6">
               <input type="text" placeholder="Paste API Key here" id="autoscribe-api-key">
-              <label>API Key (OpenAI)</label>
+              <label>API Key (<span class="selected-provider-name">OpenAI</span>)</label>
               <div class="helper-text">
                 Click <%= link_to 'here', 'https://beta.openai.com/account/api-keys', target: '_blank' %> to get your API key for OpenAI.
               </div>
